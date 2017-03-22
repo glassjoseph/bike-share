@@ -41,13 +41,14 @@ class Station < ActiveRecord::Base
     self.where(installation_date: self.minimum(:installation_date)).first
   end
 
-  def self.most_starts
-    # for each station
-    #count how many times it occurs in trip, start_station_id
-
-    # order by
-    #count of occurances of start_station_id
-
+  def self.most_popular_date(id)
+    Trip.where(start_station_id: id).group("DATE_TRUNC('day', start_date)").order('count_id DESC').limit(1).count(:id).flatten.to_s.to_date
+  end
+  def self.most_popular_customer_zip(id)
+    Trip.where(start_station_id: id).group(:zip_code).order('count_id DESC').limit(1).count(:id).first.first.to_s
+  end
+  def self.most_popular_bike(id)
+    Trip.where(start_station_id: id).group(:bike_id).order('count_id DESC').limit(1).count(:id).first.first.to_s
   end
 
 end
