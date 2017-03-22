@@ -84,4 +84,26 @@ class Trip < ActiveRecord::Base
   def self.least_busy_day
     self.group("DATE_TRUNC('day', start_date)").count.min_by {|k,v| v}
   end
+
+  def self.ride_start_by_station(station_id)
+    self.where(start_station_id: station_id).count
+  end
+
+  def self.ride_end_by_station(station_id)
+    self.where(end_station_id: station_id).count
+  end
+
+  def self.destination_by_station(station_id)
+    self.where(start_station_id: station_id).group(:end_station).order('count_id DESC').limit(1).count(:id).first[0].name
+  end
+
+  def self.origination_by_station(station_id)
+    self.where(end_station_id: station_id).group(:start_station).order('count_id DESC').limit(1).count(:id).first[0].name
+  end
+
+  def self.popular_date_by_station(station_id)
+
+  end
+
+
 end
