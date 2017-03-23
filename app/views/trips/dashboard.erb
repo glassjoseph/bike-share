@@ -1,10 +1,49 @@
+<div class="mdl-grid">
+
+<div class="mdl-cell mdl-cell--4-col">
 <div class="demo-card-square mdl-card mdl-shadow--2dp">
-  <div class="mdl-card__supporting-text">
-  <p> <strong>Average ride duration:</strong> <%= ((@trips.avg)/60).round(0)  %> minutes</p>
-  <p> <strong>Longest Ride:</strong> <%= (@trips.longest/60/60/24).round(1) %> days</p>
-  <p> <strong>Shortest Ride:</strong>  <%= (@trips.shortest) %> seconds </p>
-  <p> <strong>Most Popular place to start a ride:</strong>  <%= (@trips.most_start) %> </p>
+      <div class="mdl-card__supporting-text">
   <p> <strong>Most Popular place to end a ride:</strong>  <%= (@trips.most_end) %> </p>
+    <div class="mdl-card__actions mdl-card--border">
+      <p> <strong>Busiest date:</strong>
+    <% busiest_day = @trips.busiest_day %>
+      <%=  busiest_day[0]  %> with <%= busiest_day[1] %> rides
+  </p>
+  </div>
+    <div class="mdl-card__actions mdl-card--border">
+      <p> <strong>Least Busy date:</strong>
+    <% least_busy_day = @trips.least_busy_day %>
+      <%=  least_busy_day[0]  %> with <%= least_busy_day[1] %> rides
+    </p>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+    <p> <strong>Least Used Bike:</strong>  #<%= @trips.least_busy_bike.stringify_keys.first.first  %> with <%= @trips.least_busy_bike.values.first %> rides
+    </p>
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <p> <strong>Busiest Bike:</strong>  #<%= @trips.busiest_bike.stringify_keys.first.first  %> with <%= @trips.busiest_bike.values.first %> rides </p>
+  </div>
+<div class="mdl-card__actions mdl-card--border">
+   <p> <strong>Average ride duration:</strong> <%= ((@trips.avg)/60).round(0)  %> minutes</p>
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+   <p> <strong>Longest Ride:</strong> <%= (@trips.longest/60/60/24).round(1) %> days</p>
+  </div>
+   <div class="mdl-card__actions mdl-card--border">
+   <p> <strong>Shortest Ride:</strong>  <%= (@trips.shortest) %> seconds </p>
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <p> <strong>Most Popular place to start a ride:</strong>  <%= (@trips.most_start) %> </p>
+  </div>
+  </div>
+  </div>
+  </div>
+
+<div class="mdl-cell mdl-cell--4-col">
+
+  <div class="demo-card-square mdl-card mdl-shadow--2dp">
+  <h4>Rides by Month: </h4>
+      <div class="mdl-card__supporting-text">
   <table cellspacing="10">
     <th><h2>Month</h2></th>
     <th><h2>Rides</h2></th>
@@ -57,6 +96,13 @@
         <td><%= month_array[:months][12] %></td>
       </tr>
   </table>
+</div>
+</div>
+</div>
+
+<div class="demo-card-square mdl-card mdl-shadow--2dp">
+  <h4>Rides by Year: </h4>
+    <div class="mdl-card__supporting-text">
   <table cellspacing="10">
     <th><h2>Year</h2></th>
     <th><h2>Rides</h2></th>
@@ -67,11 +113,14 @@
     </tr>
     <% end %>
   </table>
-  <p> <strong>Busiest Bike:</strong>  #<%= @trips.busiest_bike.stringify_keys.first.first  %> with <%= @trips.busiest_bike.values.first %> rides </p>
-  <p> <strong>Least Used Bike:</strong>  #<%= @trips.least_busy_bike.stringify_keys.first.first  %> with <%= @trips.least_busy_bike.values.first %> rides
-  </p>
-  <div>
-    <table>
+</div>
+
+  <div class="mdl-card__actions mdl-card--border">
+  <h4>Subscription Types: </h4>
+      <div class="mdl-card__supporting-text">
+
+  <table cellspacing="10">
+   <table>
        <% subscribers = @trips.subscription_info  %>
       <th><strong>Customer Types</strong> </th>
       <th>Data</th>
@@ -86,15 +135,5 @@
       </tr>
       <% end %>
     </table>
-  </div>
-  <p> <strong>Busiest date:</strong>
-    <% busiest_day = @trips.busiest_day %>
-      <%=  busiest_day[0]  %> with <%= busiest_day[1] %> rides
-  </p>
-  <p> <strong>Least Busy date:</strong>
-    <% least_busy_day = @trips.least_busy_day %>
-      <%=  least_busy_day[0]  %> with <%= least_busy_day[1] %> rides
-  </p>
-
-</div>
+    </div>
 </div>
