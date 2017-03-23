@@ -19,6 +19,10 @@
 
     <div class="mdl-card__actions mdl-card--border">
       <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="stations/<%= station.id %>">View & Edit</a>
+      <form action="/stations/<%= station.id %>" method="post">
+       <input type="hidden" name="_method" value="DELETE" />
+      <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Delete</button>
+      </form>
       </div>
     </div>
 </div>
