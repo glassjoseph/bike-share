@@ -11,7 +11,7 @@
 class Weather < ActiveRecord::Base
 
 	validates :date, uniqueness: true
-
+	has_many :trips, :foreign_key => :start_date
 	def self.total
 		all.count
 	end
@@ -38,6 +38,7 @@ class Weather < ActiveRecord::Base
 
   def self.temp_breakdown
     # find trips per day
+		binding.pry
 
     #30-100
     (30..100).step(10) do |num|
@@ -80,8 +81,46 @@ class Weather < ActiveRecord::Base
     #Put values into hash for easy return?
   end
 
-  def ride_counts
+  def self.sort_by_precipitation
+		self.group(:date).group('precipitation / .5').count(:id).group_by do |k, _v|
+			(k[1] / 0.5).ceil - 0.0
+		end.map do |rain, dates|
+			{(rain/2) => dates.map do |date|
+				date[0][0]
+			end}
+		end
   end
+
+	def self.sort_again
+		array = Weather.where(precipitation: 0.0..0.5).all.map {|weather| weather.date}
+		# Trip.where(['start_date IN(?)', array])
+		trip_nums = array.map do |date|
+			Trip.where(start_date: date)
+		end
+		binding.pry
+		# I want to find all of the trips for an array of dates
+
+	end
+
+	def self.avg_rides_precip
+		binding.pry
+		precip_group.map do |precip, dates|
+			dates.map {|single_date|
+			single_date = single_date.to_time.in_time_zone("UTC")
+			Trip.where(start_date: single_date.beginning_of_day...single_date.end_of_day).count}
+		end
+
+		# sort_by_precipitation.first.map do |rain, days|
+		# 	{rain => days.map do |day|
+		#
+		# 		Trip.where(start_date: day.beginning_of_day...day.end_of_day).count
+		# 	end}
+		# end
+		# binding.pry
+		# Trip.where(start_date: date.beginning_of_day...date.end_of_day).count
+
+		#find average of average rides by date
+	end
 
 
 end
