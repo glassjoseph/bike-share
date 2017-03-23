@@ -1,5 +1,4 @@
 class Trip < ActiveRecord::Base
-  # has_many :stations  # actually just has a start_station and end_station
 
   belongs_to :start_station, class_name: "Station", foreign_key: "start_station_id"
   belongs_to :end_station, class_name: "Station", foreign_key: "end_station_id"
@@ -52,12 +51,6 @@ class Trip < ActiveRecord::Base
     end
 
     return_hash = {months: month_hash, years: year_hash}
-
-    # Trip.where('extract(month from start_date) = 8').where('extract(year from start_date) = 2013')
-    # January : 4000??
-    #   2013 subtotal: 1000?
-    #   2014 subtotal: 1000?
-    #   2015 subtotal: 1000?
   end
 
   def self.busiest_bike
@@ -96,7 +89,7 @@ class Trip < ActiveRecord::Base
 
   def self.destination_by_station(station_id)
     if self.where(start_station_id: station_id).group(:end_station).order('count_id DESC').limit(1).count(:id).first
-        self.where(start_station_id: station_id).group(:end_station).order('count_id DESC').limit(1).count(:id).first[0].name 
+        self.where(start_station_id: station_id).group(:end_station).order('count_id DESC').limit(1).count(:id).first[0].name
     else
       "no destinations"
     end
@@ -108,6 +101,10 @@ class Trip < ActiveRecord::Base
     else
       "no destinations?"
     end
+  end
+
+  def self.busiest_weather(date)
+    Weather.find_by(date: date)
   end
 
 

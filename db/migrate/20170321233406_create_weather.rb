@@ -6,9 +6,9 @@ class CreateWeather < ActiveRecord::Migration[5.0]
   		t.float    :mean_temperature
   		t.float    :min_temperature
   		t.float	   :mean_humidity
-  		t.float    :mean_visibility #miles
-  		t.float    :mean_wind_speed #mph
-  		t.float		 :precipitation #inches
+  		t.float    :mean_visibility 
+  		t.float    :mean_wind_speed
+  		t.float		 :precipitation
   	end
   end
 end

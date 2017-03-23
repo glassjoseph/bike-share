@@ -28,80 +28,13 @@ RSpec.describe "As a user wants to create a conditions report" do
     fill_in "weather[mean_wind_speed]", with: 5
     fill_in "weather[precipitation]" , with: 2
 
-    #
-    # fill_in , with:
-    # fill_in "station[name]", with: "Downtown"
-    # fill_in "city[name]", with: "Amsterdam"
-  	# fill_in "station[dock_count]", with: 15
-  	# fill_in "station[installation_date]", with: time
-  	click_on "Submit" #explore selectors
+  	click_on "Submit"
     expect( current_path ).to eq('/conditions')
 
   end
 
   it "then user can view the weather report" do
-    # Date: time
-    # Max Temperature: 30
-    # Minimum Temperature: 20
-    # Average Temperature: 10
-    # Avg Humidity: 5
-    # Average Visibility: 5
-    # Wind Speed: 5
-    # Precipitation: 2
+
   end
 
-
-#   it "they can't submit when name field is empty" do
-#     time = DateTime.now
-#     visit '/stations/new'
-#     fill_in "city[name]", with: "Amsterdam"
-#     fill_in "station[dock_count]", with: 15
-#     fill_in "station[installation_date]", with: time
-#
-#     click_on "Submit"
-#
-#     expect( current_path ).to eq('/stations/new')
-#     expect(page).to have_content("Create a New Station")
-#   end
-#
-#   it "they can't submit when city field is empty" do
-#     time = DateTime.now
-#     visit '/stations/new'
-#     fill_in "station[name]", with: "Station 235"
-#     fill_in "station[dock_count]", with: 15
-#     fill_in "station[installation_date]", with: time
-#
-#     click_on "Submit"
-#
-#     expect( current_path ).to eq('/stations/new')
-#     expect(page).to have_content("Create a New Station")
-#   end
-#
-#   it "they can't submit when dock_count field is empty" do
-#     time = DateTime.now
-#     visit '/stations/new'
-#     fill_in "station[name]", with: "Amsterdam"
-#     fill_in "city[name]", with: "NYC"
-#     fill_in "station[installation_date]", with: time
-#
-#     click_on "Submit"
-#
-#     expect( current_path ).to eq('/stations/new')
-#     expect(page).to have_content("Create a New Station")
-#   end
-#
-#   it "they can't submit when installation_date field is empty" do
-#     time = DateTime.now
-#     visit '/stations/new'
-#     fill_in "station[name]", with: "Billy"
-#     fill_in "city[name]", with: "Amsterdam"
-#     fill_in "station[dock_count]", with: 15
-#
-#     click_on "Submit"
-#
-#     expect( current_path ).to eq('/stations/new')
-#     expect(page).to have_content("Create a New Station")
-#   end
-#
-#
 end

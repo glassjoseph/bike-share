@@ -9,12 +9,24 @@
     <% busiest_day = @trips.busiest_day %>
       <%=  busiest_day[0]  %> with <%= busiest_day[1] %> rides
   </p>
+      <p> <strong>Busiest day weather:</strong><br>
+      temp: <%=  @trips.busiest_weather(busiest_day[0]).max_temperature %> F <br>
+      precipitation: <%=  @trips.busiest_weather(busiest_day[0]).precipitation %> in. <br>
+      wind: <%=  @trips.busiest_weather(busiest_day[0]).mean_wind_speed %> MPH <br>
+      Visibility: <%=  @trips.busiest_weather(busiest_day[0]).mean_visibility %> Mi <br>
+  </p>
   </div>
     <div class="mdl-card__actions mdl-card--border">
       <p> <strong>Least Busy date:</strong>
     <% least_busy_day = @trips.least_busy_day %>
       <%=  least_busy_day[0]  %> with <%= least_busy_day[1] %> rides
     </p>
+    <p> <strong>Least busy day weather:</strong><br>
+    temp: <%=  @trips.busiest_weather(least_busy_day[0]).max_temperature %> F <br>
+    precipitation: <%=  @trips.busiest_weather(least_busy_day[0]).precipitation %> in. <br>
+    wind: <%=  @trips.busiest_weather(least_busy_day[0]).mean_wind_speed %> MPH <br>
+    Visibility: <%=  @trips.busiest_weather(least_busy_day[0]).mean_visibility %> Mi <br>
+</p>
     </div>
     <div class="mdl-card__actions mdl-card--border">
     <p> <strong>Least Used Bike:</strong>  #<%= @trips.least_busy_bike.stringify_keys.first.first  %> with <%= @trips.least_busy_bike.values.first %> rides
@@ -136,4 +148,5 @@
       <% end %>
     </table>
     </div>
+
 </div>

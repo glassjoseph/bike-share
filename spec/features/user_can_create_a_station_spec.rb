@@ -9,7 +9,7 @@ RSpec.describe "As a user wants to create a station" do
 		fill_in "station[dock_count]", with: 15
 		fill_in "station[installation_date]", with: time
 
-		click_on "Submit" #explore selectors
+		click_on "Submit" 
 
 		expect( current_path ).to eq('/stations')
 		expect(page).to have_content("Downtown")

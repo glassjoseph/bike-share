@@ -126,6 +126,9 @@ class BikeShareApp < Sinatra::Base
   get '/weather-dashboard' do
     @weathers = Weather
     @trips = Trip
+		x = 1.5
+		@ranges = []
+		1.times { @ranges << x..(x + 0.1); x += 0.1 }
     erb :"weathers/dashboard"
   end
 
