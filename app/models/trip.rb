@@ -3,6 +3,7 @@ class Trip < ActiveRecord::Base
 
   belongs_to :start_station, class_name: "Station", foreign_key: "start_station_id"
   belongs_to :end_station, class_name: "Station", foreign_key: "end_station_id"
+  belongs_to :date, class_name: "Weather", foreign_key: "date"
 
   validates :id, uniqueness: true if :id
 
@@ -109,9 +110,7 @@ class Trip < ActiveRecord::Base
     end
   end
 
-  def self.popular_date_by_station(station_id)
 
-  end
 
 
 end
