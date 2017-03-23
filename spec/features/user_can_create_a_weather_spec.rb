@@ -30,11 +30,18 @@ RSpec.describe "As a user wants to create a conditions report" do
 
   	click_on "Submit"
     expect( current_path ).to eq('/conditions')
-
   end
 
   it "then user can view the weather report" do
 
+    expect(current_path).to eq('/conditions')
+    expect(page).to have_content("Date:")
+    expect(page).to have_content("Max Temperature: 30")
+    expect(page).to have_content("Minimum Temperature: 20")
+    expect(page).to have_content("Average Temperature: 10")
+    expect(page).to have_content("Avg Humidity: 5")
+    expect(page).to have_content("Average Visibility: 5")
+    expect(page).to have_content("Wind Speed: 5")
+    expect(page).to have_content("Precipitation: 2")
   end
-
 end
