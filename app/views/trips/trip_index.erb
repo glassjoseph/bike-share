@@ -1,6 +1,5 @@
 <div class="mdl-grid">
 
-
 <% @trips.each do |trip| %>
 
 <div class="mdl-cell mdl-cell--4-col">
@@ -33,6 +32,6 @@
 </div>
 <% end %>
 
-<%= will_paginate @trips %>
+<div class="paginate"><%= will_paginate @trips %></div>
 
 </div>
