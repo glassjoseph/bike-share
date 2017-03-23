@@ -23,7 +23,7 @@ RSpec.describe "As a user wants to delete a station" do
 
     click_on "View & Edit"
     expect( current_path ).to eq('/stations/1')
-    # expect(page).to have_content("Edit Station")
+    expect(page).to have_content("Edit Station")
   end
 
   it "they can click delete" do

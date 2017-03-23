@@ -32,7 +32,7 @@ RSpec.describe "As a user wants to edit a station" do
     fill_in "station[dock_count]", with: 16
     fill_in "station[installation_date]", with: time
 
-    # click_on "Submit"
+    # click_on "Update"
     expect( current_path ).to eq('/stations/1')
     expect(page).to have_content("Edit Station")
   end
@@ -44,7 +44,7 @@ RSpec.describe "As a user wants to edit a station" do
     fill_in "station[dock_count]", with: 16
     fill_in "station[installation_date]", with: time
 
-    # click_on "Submit"
+    # click_on "Update"
     expect( current_path ).to eq('/stations/1')
     expect(page).to have_content("Edit Station")
   end
@@ -56,7 +56,7 @@ RSpec.describe "As a user wants to edit a station" do
     fill_in "city[name]", with: "New Amsterdam"
     fill_in "station[installation_date]", with: time
 
-    # click_on "Submit"
+    # click_on "Update"
     expect( current_path ).to eq('/stations/1')
     expect(page).to have_content("Edit Station")
   end
@@ -82,7 +82,7 @@ RSpec.describe "As a user wants to edit a station" do
     fill_in "station[installation_date]", with: time
 
 
-    click_on "Submit"
+    click_on "Update"
 
     expect( current_path ).to eq('/stations')
 
