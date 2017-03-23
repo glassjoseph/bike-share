@@ -10,7 +10,6 @@ class BikeShareApp < Sinatra::Base
   end
 
 	get '/stations/new' do
-		#inst var (AR methods)
 		erb :new_station
 	end
 
@@ -116,11 +115,6 @@ class BikeShareApp < Sinatra::Base
 
   post '/conditions' do
     Weather.create(params[:weather])
-    # binding.pry
-    #check date format incomingness
-    # params[:weather][:date] = DateTime.strptime(params[:weather][:date], "%Y-%m-%dT%H:%M")
-    # (DateTime.strptime(params[:trip][:end_date], "%Y-%m-%dT%H:%M")
-
     redirect '/conditions'
   end
 

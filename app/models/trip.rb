@@ -94,11 +94,19 @@ class Trip < ActiveRecord::Base
   end
 
   def self.destination_by_station(station_id)
-    self.where(start_station_id: station_id).group(:end_station).order('count_id DESC').limit(1).count(:id).first[0].name
+    if self.where(start_station_id: station_id).group(:end_station).order('count_id DESC').limit(1).count(:id).first
+        self.where(start_station_id: station_id).group(:end_station).order('count_id DESC').limit(1).count(:id).first[0].name 
+    else
+      "no destinations"
+    end
   end
 
   def self.origination_by_station(station_id)
-    self.where(end_station_id: station_id).group(:start_station).order('count_id DESC').limit(1).count(:id).first[0].name
+    if self.where(end_station_id: station_id).group(:start_station).order('count_id DESC').limit(1).count(:id).first
+        self.where(end_station_id: station_id).group(:start_station).order('count_id DESC').limit(1).count(:id).first[0].name
+    else
+      "no destinations?"
+    end
   end
 
   def self.popular_date_by_station(station_id)
