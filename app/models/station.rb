@@ -42,13 +42,18 @@ class Station < ActiveRecord::Base
   end
 
   def self.most_popular_date(id)
-    Trip.where(start_station_id: id).group("DATE_TRUNC('day', start_date)").order('count_id DESC').limit(1).count(:id).flatten.to_s.to_date
+    unless Trip.where(start_station_id: id).empty?
+      Trip.where(start_station_id: id).group("DATE_TRUNC('day', start_date)").order('count_id DESC').limit(1).count(:id).flatten.to_s.to_date
+    end
   end
   def self.most_popular_customer_zip(id)
-    Trip.where(start_station_id: id).group(:zip_code).order('count_id DESC').limit(1).count(:id).first.first.to_s
+    unless Trip.where(start_station_id: id).empty?
+      Trip.where(start_station_id: id).group(:zip_code).order('count_id DESC').limit(1).count(:id).first.first.to_s
+    end
   end
   def self.most_popular_bike(id)
+    unless Trip.where(start_station_id: id).empty?
     Trip.where(start_station_id: id).group(:bike_id).order('count_id DESC').limit(1).count(:id).first.first.to_s
+    end
   end
-
 end
